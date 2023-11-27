@@ -1,11 +1,20 @@
 import HeadElement from '@/components/HeadElement/HeadElement'
 import Home from '@/components/Home/Home'
+import dynamic from "next/dynamic";
+import {useEffect, useState} from "react";
 
 export default function HomePage () {
-  return (
-    <>
-      <HeadElement/>
-      <Home />
-    </>
+    const [winReady, setwinReady] = useState(false);
+    useEffect(() => {
+        setwinReady(true);
+    }, []);
+
+    //the DnD lists dont work until AFTER the page is loaded and this is the best i could think of
+    return (
+      winReady?  <>
+              <HeadElement/>
+              <Home />
+          </> : null
+
   )
 }

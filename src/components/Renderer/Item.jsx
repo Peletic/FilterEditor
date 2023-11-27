@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function BlacklistItem ({ index, key, style, simpleFilter, filter, setFilter }) {
+export default function Item ({ index, key, style, simpleFilter, filter, setFilter }) {
   const entry = Object.keys(simpleFilter.blacklist)[index]
 
   const removeItem = () => {
