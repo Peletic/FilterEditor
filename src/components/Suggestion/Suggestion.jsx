@@ -2,20 +2,8 @@ import Image from 'next/image';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import {useState} from "react";
 
-export default function Suggestion({name, image, index}) {
-    const [state, setState] = useState(null)
-    //const endTaskId =
-
-    const onDragEnd = (res) => {
-        const {destination, source} = res
-        if (!destination || destination.class !== "list") return
-
-
-    }
-
-
+export default function Suggestion({name, image, index, setFilter, filter}) {
     return (
-        //<Draggable key={index} draggableId={index} >
             <li
                 key={index}
                 className='relative'
@@ -23,6 +11,15 @@ export default function Suggestion({name, image, index}) {
                 <button
                     type='button'
                     className='flex items-center w-full px-2 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none'
+                    onClick={() => {
+                        setFilter({
+                            ...filter,
+                            blacklist: {
+                                ...filter.blacklist ? filter.blacklist : {},
+                                [name]: {}
+                            }
+                        })
+                    }}
                 >
         <span
             className='ml-2'
@@ -40,7 +37,5 @@ export default function Suggestion({name, image, index}) {
                     )}
                 </button>
             </li>
-        //</Draggable>
-
     )
 }
