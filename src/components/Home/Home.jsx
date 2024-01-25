@@ -7,13 +7,13 @@ export default function Home () {
 
   return (
     <main
-      className='select-none tracking-tight'
+      className='select-none tracking-tight h-full'
     >
       <Heading
         content='Config Editor'
       />
       <div
-        className='p-5 mx-2 my-5'
+        className='p-5 mx-2 my-5 h-full'
       >
         <label
           htmlFor='default-search'

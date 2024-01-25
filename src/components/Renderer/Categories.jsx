@@ -1,14 +1,11 @@
 import {useEffect, useState} from "react";
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
+import Blacklist from "@/components/Renderer/Blacklist";
+import UserFlipFinder from "@/components/Renderer/UserFlipFinder";
+import Whitelist from "@/components/Renderer/Whitelist";
+import TrueBlacklist from "@/components/Renderer/TrueBlacklist";
 
 export default function Categories({simpleFilter, setSimpleFilter}) {
-
-    // fake data generator
-    const getItems = (count, offset = -20) =>
-        Array.from({length: count}, (v, k) => k).map(k => ({
-            id: `item-${k + offset}-${new Date().getTime()}`,
-            content: `item ${k + offset}`
-        }));
 
     const reorder = (list, startIndex, endIndex) => {
         const result = Array.from(list);
@@ -29,8 +26,25 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
         destClone.splice(droppableDestination.index, 0, removed);
 
         const result = {};
-        result[droppableSource.droppableId] = [...[],...sourceClone];
-        result[droppableDestination.droppableId] = [...[],...destClone];
+        result[droppableSource.droppableId] = [...[], ...sourceClone];
+        result[droppableDestination.droppableId] = [...[], ...destClone];
+
+        const ds = Number.parseInt(droppableSource.droppableId)
+        const dd = Number.parseInt(droppableDestination.droppableId)
+
+        const oldCategory = ds===0 ? "blacklist" : ds===1 ? "whitelist" : ds===2 ? "user_flip_finder" : "true_blacklist"
+        const newCategory = dd===0 ? "blacklist" : dd===1 ? "whitelist" : dd===2 ? "user_flip_finder" : "true_blacklist"
+
+        const itemId = source[droppableSource.index].content
+
+        const newFilter = simpleFilter
+
+        console.log("New category: " + JSON.stringify(destination) + "\nOld category: " + JSON.stringify(source) + "\nDestination: " + JSON.stringify(droppableSource) + "\nSource: " + JSON.stringify(droppableDestination))
+        console.log("New cat name: " + newCategory + "\nOld cat name: " + oldCategory)
+        newFilter[newCategory][itemId] = simpleFilter[oldCategory][itemId]
+        delete newFilter[oldCategory][itemId]
+        setSimpleFilter(newFilter)
+        console.log(simpleFilter)
 
         return result;
     };
@@ -51,7 +65,7 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
     const getListStyle = isDraggingOver => ({
         background: isDraggingOver ? "lightblue" : "lightgrey",
         padding: grid,
-        width: 250
+        width: 250,
     });
 
 
@@ -71,18 +85,18 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
             id: getId(),
             content: i
         })) : []]
-        tempState[1] = [...[],...simpleFilter.whitelist ? Object.keys(simpleFilter.whitelist).map(i => ({
+        tempState[1] = [...[], ...simpleFilter.whitelist ? Object.keys(simpleFilter.whitelist).map(i => ({
             id: getId(),
             content: i
         })) : []]
-        tempState[2] = [...[],...simpleFilter.true_blacklist ? Object.keys(simpleFilter.true_blacklist).map(i => ({
+        tempState[2] = [...[], ...simpleFilter.user_flip_finder ? Object.keys(simpleFilter.user_flip_finder).map(i => ({
             id: getId(),
             content: i
         })) : []]
-        tempState[3] = [...[],...simpleFilter.user_flip_finder ? Object.keys(simpleFilter.user_flip_finder).map(i => ({
+        tempState[3] = [...[], ...simpleFilter.true_blacklist ? Object.keys(simpleFilter.true_blacklist).map(i => ({
             id: getId(),
             content: i
-        }) ): []]
+        })) : []]
         console.log(tempState)
         setState(tempState)
 
@@ -115,61 +129,32 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
 
     return (
         <>
-            <div style={{display: "flex"}}>
+            <div className={"flex my-10 h-full"}>
                 <DragDropContext onDragEnd={onDragEnd}>
-                    {state.map((el, ind) => (
-                        <Droppable key={ind} droppableId={`${ind}`}>
-                            {(provided, snapshot) => (
-                                <div
-                                    ref={provided.innerRef}
-                                    style={getListStyle(snapshot.isDraggingOver)}
-                                    {...provided.droppableProps}
-                                >
-                                    {el.map((item, index) => (
-                                        <Draggable
-                                            key={item.id}
-                                            draggableId={item.id}
-                                            index={index}
-                                        >
-                                            {(provided, snapshot) => (
-                                                <div
-                                                    ref={provided.innerRef}
-                                                    {...provided.draggableProps}
-                                                    {...provided.dragHandleProps}
-                                                    style={getItemStyle(
-                                                        snapshot.isDragging,
-                                                        provided.draggableProps.style
-                                                    )}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            display: "flex",
-                                                            justifyContent: "space-around"
-                                                        }}
-                                                    >
-                                                        {item.content}
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => {
-                                                                const newState = [...state];
-                                                                newState[ind].splice(index, 1);
-                                                                setState(
-                                                                    newState.filter(group => group.length)
-                                                                );
-                                                            }}
-                                                        >
-                                                            delete
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            )}
-                                        </Draggable>
-                                    ))}
-                                    {provided.placeholder}
-                                </div>
-                            )}
-                        </Droppable>
-                    ))}
+                    <Blacklist
+                        state={state}
+                        setState={setState}
+                        getListStyle={getListStyle}
+                        getItemStyle={getItemStyle}
+                    />
+                    <Whitelist
+                        state={state}
+                        setState={setState}
+                        getListStyle={getListStyle}
+                        getItemStyle={getItemStyle}
+                    />
+                    <UserFlipFinder
+                        state={state}
+                        setState={setState}
+                        getListStyle={getListStyle}
+                        getItemStyle={getItemStyle}
+                    />
+                    <TrueBlacklist
+                        state={state}
+                        setState={setState}
+                        getListStyle={getListStyle}
+                        getItemStyle={getItemStyle}
+                    />
                 </DragDropContext>
             </div>
         </>
