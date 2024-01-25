@@ -1,4 +1,4 @@
-export default function Download ({ filter, setFilter }) {
+export default function Download({filter, setFilter}) {
   const handleDownload = () => {
     const element = document.createElement('a')
     const file = new Blob([

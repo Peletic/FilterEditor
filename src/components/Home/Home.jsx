@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import Heading from '../Heading/Heading'
 import Search from '../Search/Search'
 
-export default function Home () {
+export default function Home() {
   const [filter, setFilter] = useState(null)
 
   return (

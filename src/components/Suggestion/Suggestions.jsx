@@ -1,6 +1,6 @@
 import Suggestion from './Suggestion'
 
-export default function Suggestions ({ suggestions, setFilter, filter}) {
+export default function Suggestions({suggestions, setFilter, filter}) {
   console.log(JSON.stringify(filter))
   return (
     <div

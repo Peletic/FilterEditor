@@ -1,4 +1,4 @@
-export default function Upload ({ setFilter }) {
+export default function Upload({setFilter}) {
   const handleUpload = (event) => {
     const file = event.target.files[0]
     if (file == null) {
