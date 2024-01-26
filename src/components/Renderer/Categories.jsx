@@ -4,8 +4,10 @@ import Blacklist from "@/components/Renderer/Blacklist";
 import UserFlipFinder from "@/components/Renderer/UserFlipFinder";
 import Whitelist from "@/components/Renderer/Whitelist";
 import TrueBlacklist from "@/components/Renderer/TrueBlacklist";
-
+import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../../tailwind.config.js";
 export default function Categories({simpleFilter, setSimpleFilter}) {
+  const {theme} = resolveConfig(tailwindConfig)
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -63,7 +65,7 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
     ...draggableStyle
   });
   const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "lightblue" : "lightgrey",
+    background: isDraggingOver ? theme.colors.Highlight : theme.colors.Primary,
     padding: grid,
     width: 250,
   });

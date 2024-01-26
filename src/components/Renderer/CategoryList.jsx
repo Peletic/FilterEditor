@@ -11,7 +11,7 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
             ref={provided.innerRef}
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
-            className={"h-full"}
+            className={"h-full rounded outline-Highlight outline-1 outline"}
           >
             {state[Number.parseInt(id)].map((item, index) => (
               <Draggable
@@ -57,6 +57,7 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
           </div>
         )}
       </Droppable>
+
     </div>
   )
 }

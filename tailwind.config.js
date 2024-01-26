@@ -14,8 +14,15 @@ module.exports = {
       },
       scale: {
         '10': '0.1'
+      },
+      colors: {
+        'Primary': '#050301',
+        'Secondary': '#805167',
+        'Accent': '#fafadc',
+        'Highlight': '#ff716b'
       }
     },
-  },
+    },
+
   plugins: [],
 }

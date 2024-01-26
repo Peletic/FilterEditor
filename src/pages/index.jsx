@@ -10,11 +10,9 @@ export default function HomePage() {
 
   //the DnD lists dont work until AFTER the page is loaded and this is the best i could think of
   return (
-    winReady ? <div className={"h-[70vh]"}>
+    winReady ? <div className={"h-full"}>
       <HeadElement/>
       <Home/>
-
-
     </div> : null
 
   )
