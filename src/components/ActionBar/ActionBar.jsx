@@ -2,10 +2,13 @@ import Suggestions from "@/components/Suggestion/Suggestions";
 import Upload from "@/components/Handler/Upload";
 import Download from "@/components/Handler/Download";
 import Clear from "@/components/Handler/Clear";
+import { useRef, useState } from "react";
+import { wait } from "next/dist/lib/wait";
 
 export default function ActionBar({ handleSearch, suggestions, setFilter, filter, setSimpleFilter, simpleFilter }) {
+  const [isInputFocused, setInputFocused] = useState(false)
   return (
-    <div className="h-fit flex flex-[0_1_fit-content] relative">
+    <div className="h-fit relative">
       <input
         type="search"
         id="default-search"
@@ -13,14 +16,18 @@ export default function ActionBar({ handleSearch, suggestions, setFilter, filter
         placeholder="Search for an item to use in your filter"
         required
         onChange={handleSearch}
+        onBlur={() => {
+          wait(150).then(() => setInputFocused(false))}
+        }
+        onFocus={() => setInputFocused(true)}
       ></input>
-      {suggestions.length > 0 && (
+      {(suggestions.length > 0 && isInputFocused) ? (
         <Suggestions
           suggestions={suggestions}
           setFilter={setSimpleFilter}
           filter={simpleFilter}
         />
-      )}
+      ) : null}
       <Upload setFilter={setFilter} />
       <Download filter={filter} setFilter={setFilter} />
       <Clear

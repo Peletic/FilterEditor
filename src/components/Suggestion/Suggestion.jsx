@@ -5,7 +5,7 @@ export default function Suggestion({ name, image, index, setFilter, filter }) {
     <li key={index} className="relative">
       <button
         type="button"
-        className="flex items-center w-full px-2 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+        className="flex items-center w-full mx-2 my-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
         onClick={() => {
           setFilter({
             ...filter,

@@ -12,7 +12,7 @@ export default function CategoryList({ getListStyle, getItemStyle, state, setSta
             ref={provided.innerRef}
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
-            className={`rounded outline-Highlight flex flex-[1_1_100%] h-full outline-1 outline`}
+            className={`rounded outline-Highlight h-full outline-1 outline`}
           >
             {state[Number.parseInt(id)].map((item, index) => (
               <Draggable
@@ -30,17 +30,15 @@ export default function CategoryList({ getListStyle, getItemStyle, state, setSta
                       provided.draggableProps.style
                     )}
                   >
-                    <div
-
-                    >
+                    <div>
                       {item.content}
                       <button
                         type="button"
                         onClick={() => {
                           const newState = [...state];
-                          newState[id].splice(index, 1);
+                          newState[Number.parseInt(id)].splice(index, 1);
                           setState(
-                            newState.filter(group => group.length)
+                            newState
                           );
                         }}
                       >
