@@ -1,13 +1,14 @@
-import {useEffect, useState} from "react";
-import {DragDropContext} from "react-beautiful-dnd";
+import { useEffect, useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
 import Blacklist from "@/components/Renderer/Blacklist";
 import UserFlipFinder from "@/components/Renderer/UserFlipFinder";
 import Whitelist from "@/components/Renderer/Whitelist";
 import TrueBlacklist from "@/components/Renderer/TrueBlacklist";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../../tailwind.config.js";
-export default function Categories({simpleFilter, setSimpleFilter}) {
-  const {theme} = resolveConfig(tailwindConfig)
+
+export default function Categories({ simpleFilter, setSimpleFilter }) {
+  const { theme } = resolveConfig(tailwindConfig);
 
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -31,22 +32,22 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
     result[droppableSource.droppableId] = [...[], ...sourceClone];
     result[droppableDestination.droppableId] = [...[], ...destClone];
 
-    const ds = Number.parseInt(droppableSource.droppableId)
-    const dd = Number.parseInt(droppableDestination.droppableId)
+    const ds = Number.parseInt(droppableSource.droppableId);
+    const dd = Number.parseInt(droppableDestination.droppableId);
 
-    const oldCategory = ds === 0 ? "blacklist" : ds === 1 ? "whitelist" : ds === 2 ? "user_flip_finder" : "true_blacklist"
-    const newCategory = dd === 0 ? "blacklist" : dd === 1 ? "whitelist" : dd === 2 ? "user_flip_finder" : "true_blacklist"
+    const oldCategory = ds === 0 ? `blacklist` : ds === 1 ? `whitelist` : ds === 2 ? `user_flip_finder` : `true_blacklist`;
+    const newCategory = dd === 0 ? `blacklist` : dd === 1 ? `whitelist` : dd === 2 ? `user_flip_finder` : `true_blacklist`;
 
-    const itemId = source[droppableSource.index].content
+    const itemId = source[droppableSource.index].content;
 
-    const newFilter = simpleFilter
+    const newFilter = simpleFilter;
 
-    console.log("New category: " + JSON.stringify(destination) + "\nOld category: " + JSON.stringify(source) + "\nDestination: " + JSON.stringify(droppableSource) + "\nSource: " + JSON.stringify(droppableDestination))
-    console.log("New cat name: " + newCategory + "\nOld cat name: " + oldCategory)
-    newFilter[newCategory][itemId] = simpleFilter[oldCategory][itemId]
-    delete newFilter[oldCategory][itemId]
-    setSimpleFilter(newFilter)
-    console.log(simpleFilter)
+    console.log(`New category: ` + JSON.stringify(destination) + `\nOld category: ` + JSON.stringify(source) + `\nDestination: ` + JSON.stringify(droppableSource) + `\nSource: ` + JSON.stringify(droppableDestination));
+    console.log(`New cat name: ` + newCategory + `\nOld cat name: ` + oldCategory);
+    newFilter[newCategory][itemId] = simpleFilter[oldCategory][itemId];
+    delete newFilter[oldCategory][itemId];
+    setSimpleFilter(newFilter);
+    console.log(simpleFilter);
 
     return result;
   };
@@ -54,58 +55,56 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
 
   const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
-    userSelect: "none",
+    userSelect: `none`,
     padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
 
     // change background colour if dragging
-    background: isDragging ? "lightgreen" : "grey",
+    background: isDragging ? `lightgreen` : `grey`,
 
     // styles we need to apply on draggables
     ...draggableStyle
   });
   const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? theme.colors.Highlight : theme.colors.Primary,
-    padding: grid,
-    width: 250,
+    width: 250
   });
 
 
   const [state, setState] = useState([[], [], [], []]);
-  let id = 0
+  let id = 0;
 
   const getId = () => {
 
-    console.log(id++)
-    return id.toString()
-  }
+    console.log(id++);
+    return id.toString();
+  };
 
   useEffect(() => {
 
-    const tempState = [...state]
+    const tempState = [...state];
     tempState[0] = [...[], ...simpleFilter.blacklist ? Object.keys(simpleFilter.blacklist).map(i => ({
       id: getId(),
       content: i
-    })) : []]
+    })) : []];
     tempState[1] = [...[], ...simpleFilter.whitelist ? Object.keys(simpleFilter.whitelist).map(i => ({
       id: getId(),
       content: i
-    })) : []]
+    })) : []];
     tempState[2] = [...[], ...simpleFilter.user_flip_finder ? Object.keys(simpleFilter.user_flip_finder).map(i => ({
       id: getId(),
       content: i
-    })) : []]
+    })) : []];
     tempState[3] = [...[], ...simpleFilter.true_blacklist ? Object.keys(simpleFilter.true_blacklist).map(i => ({
       id: getId(),
       content: i
-    })) : []]
-    console.log(tempState)
-    setState(tempState)
+    })) : []];
+    console.log(tempState);
+    setState(tempState);
 
   }, [simpleFilter]);
 
   function onDragEnd(result) {
-    const {source, destination} = result;
+    const { source, destination } = result;
 
     // dropped outside the list
     if (!destination) {
@@ -130,35 +129,37 @@ export default function Categories({simpleFilter, setSimpleFilter}) {
   }
 
   return (
-    <>
-      <div className={"flex my-10 h-full"}>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Blacklist
-            state={state}
-            setState={setState}
-            getListStyle={getListStyle}
-            getItemStyle={getItemStyle}
-          />
-          <Whitelist
-            state={state}
-            setState={setState}
-            getListStyle={getListStyle}
-            getItemStyle={getItemStyle}
-          />
-          <UserFlipFinder
-            state={state}
-            setState={setState}
-            getListStyle={getListStyle}
-            getItemStyle={getItemStyle}
-          />
-          <TrueBlacklist
-            state={state}
-            setState={setState}
-            getListStyle={getListStyle}
-            getItemStyle={getItemStyle}
-          />
-        </DragDropContext>
-      </div>
-    </>
-  )
+
+    <div className={`flex-[1_1_auto] flex my-4 shrink-0 relative`}>
+      <DragDropContext
+        onDragEnd={onDragEnd}
+      >
+        <Blacklist
+          state={state}
+          setState={setState}
+          getListStyle={getListStyle}
+          getItemStyle={getItemStyle}
+        />
+        <Whitelist
+          state={state}
+          setState={setState}
+          getListStyle={getListStyle}
+          getItemStyle={getItemStyle}
+        />
+        <UserFlipFinder
+          state={state}
+          setState={setState}
+          getListStyle={getListStyle}
+          getItemStyle={getItemStyle}
+        />
+        <TrueBlacklist
+          state={state}
+          setState={setState}
+          getListStyle={getListStyle}
+          getItemStyle={getItemStyle}
+        />
+      </DragDropContext>
+    </div>
+
+  );
 }

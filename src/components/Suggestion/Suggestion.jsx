@@ -11,8 +11,8 @@ export default function Suggestion({ name, image, index, setFilter, filter }) {
             ...filter,
             blacklist: {
               ...(filter.blacklist ? filter.blacklist : null),
-              [`${name}`]: `global:true`,
-            },
+              [`${name}`]: `global:true`
+            }
           });
         }}
       >

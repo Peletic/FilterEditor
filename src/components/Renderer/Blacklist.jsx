@@ -4,7 +4,7 @@ export default function Blacklist({
   state,
   setState,
   getListStyle,
-  getItemStyle,
+  getItemStyle
 }) {
   return (
     <CategoryList

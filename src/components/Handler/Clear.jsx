@@ -6,7 +6,7 @@ export default function Clear({ filter, setFilter, setSimplifiedFilter }) {
       blacklist: {},
       whitelist: {},
       true_blacklist: {},
-      user_flip_finder: {},
+      user_flip_finder: {}
     });
   };
 

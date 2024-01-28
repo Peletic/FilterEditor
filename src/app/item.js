@@ -6,7 +6,7 @@ export default function Entry({ itemId, list }) {
     `blacklist`,
     `whitelist`,
     `user_flip_finder`,
-    `true_blacklist`,
+    `true_blacklist`
   ];
 
   const remove = (event) => {
@@ -48,12 +48,12 @@ export default function Entry({ itemId, list }) {
         alt={itemId}
         className="h-8 w-8 top-5 right-5 float-left inline-block"
       ></img>
-      <h1 className="text-center font-mono inline m-5">
+      <h1 className="text-center font-mono inline p-5">
         Item:
         {itemId}
       </h1>
       <button
-        className="bg-red-700 transition-colors hover:bg-red-600 bottom-4 right-5 p-2 rounded float-righ inline-block"
+        className="bg-red-700 transition-colors hover:bg-red-600 bottop-4 right-5 p-2 rounded float-righ inline-block"
         onClick={remove}
       >
         Remove

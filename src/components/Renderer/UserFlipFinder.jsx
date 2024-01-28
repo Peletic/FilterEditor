@@ -4,7 +4,7 @@ export default function UserFlipFinder({
   state,
   setState,
   getListStyle,
-  getItemStyle,
+  getItemStyle
 }) {
   return (
     <CategoryList

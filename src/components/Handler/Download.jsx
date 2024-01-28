@@ -2,7 +2,7 @@ export default function Download({ filter, setFilter }) {
   const handleDownload = () => {
     const element = document.createElement(`a`);
     const file = new Blob([JSON.stringify(filter, null, 2)], {
-      type: `text/plain`,
+      type: `text/plain`
     });
 
     element.href = URL.createObjectURL(file);

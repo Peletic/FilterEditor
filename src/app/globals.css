@@ -18,13 +18,23 @@
     }
 }
 
-#__next{
+#__next {
     height: 100%
 }
 
 body {
     margin: 0;
+    padding: 0;
     color: rgb(var(--foreground-rgb));
     height: 100%;
     background: #050301;
+
+}
+
+.widget {
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    -webkit-flex-grow: 1;
+    -webkit-align-items: stretch;
+    margin: 1rem;
 }

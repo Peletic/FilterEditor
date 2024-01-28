@@ -1,9 +1,10 @@
-import {Draggable, Droppable} from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
-export default function CategoryList({getListStyle, getItemStyle, state, setState, id, title}) {
+export default function CategoryList({ getListStyle, getItemStyle, state, setState, id, title }) {
   return (
-    <div className={"flex-col mx-auto justify-items-center justify-center items-center h-full"}>
-      <h1 className={"flex m-auto justify-items-center justify-center items-center"}>{title}</h1>
+    <div
+      className={`flex-col flex flex-[1_1_100%] h-full mx-auto justify-items-center justify-center items-center justify-self-end`}>
+      <h1 className={`flex mx-auto`}>{title}</h1>
 
       <Droppable key={id} droppableId={`${id}`}>
         {(provided, snapshot) => (
@@ -11,7 +12,7 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
             ref={provided.innerRef}
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
-            className={"h-full rounded outline-Highlight outline-1 outline"}
+            className={`rounded outline-Highlight flex flex-[1_1_100%] h-full outline-1 outline`}
           >
             {state[Number.parseInt(id)].map((item, index) => (
               <Draggable
@@ -30,10 +31,7 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
                     )}
                   >
                     <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-around"
-                      }}
+
                     >
                       {item.content}
                       <button
@@ -59,5 +57,5 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
       </Droppable>
 
     </div>
-  )
+  );
 }

@@ -4,7 +4,7 @@ export default function Whitelist({
   state,
   setState,
   getListStyle,
-  getItemStyle,
+  getItemStyle
 }) {
   return (
     <CategoryList

@@ -6,7 +6,7 @@ export default function Item({
   style,
   simpleFilter,
   filter,
-  setFilter,
+  setFilter
 }) {
   const entry = Object.keys(simpleFilter.blacklist)[index];
 
