@@ -1,9 +1,26 @@
-import {Draggable, Droppable} from "react-beautiful-dnd";
+import { Draggable, Droppable } from "react-beautiful-dnd";
 
-export default function CategoryList({getListStyle, getItemStyle, state, setState, id, title}) {
+export default function CategoryList({
+  getListStyle,
+  getItemStyle,
+  state,
+  setState,
+  id,
+  title,
+}) {
   return (
-    <div className={"flex-col mx-auto justify-items-center justify-center items-center h-full"}>
-      <h1 className={"flex m-auto justify-items-center justify-center items-center"}>{title}</h1>
+    <div
+      className={
+        `flex-col mx-auto justify-items-center justify-center items-center h-full`
+      }
+    >
+      <h1
+        className={
+          `flex m-auto justify-items-center justify-center items-center`
+        }
+      >
+        {title}
+      </h1>
 
       <Droppable key={id} droppableId={`${id}`}>
         {(provided, snapshot) => (
@@ -11,14 +28,10 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
             ref={provided.innerRef}
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
-            className={"h-full"}
+            className={`h-full`}
           >
             {state[Number.parseInt(id)].map((item, index) => (
-              <Draggable
-                key={item.id}
-                draggableId={item.id}
-                index={index}
-              >
+              <Draggable key={item.id} draggableId={item.id} index={index}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -26,13 +39,13 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
                     {...provided.dragHandleProps}
                     style={getItemStyle(
                       snapshot.isDragging,
-                      provided.draggableProps.style
+                      provided.draggableProps.style,
                     )}
                   >
                     <div
                       style={{
-                        display: "flex",
-                        justifyContent: "space-around"
+                        display: `flex`,
+                        justifyContent: `space-around`,
                       }}
                     >
                       {item.content}
@@ -41,9 +54,7 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
                         onClick={() => {
                           const newState = [...state];
                           newState[id].splice(index, 1);
-                          setState(
-                            newState.filter(group => group.length)
-                          );
+                          setState(newState.filter((group) => group.length));
                         }}
                       >
                         delete
@@ -58,5 +69,5 @@ export default function CategoryList({getListStyle, getItemStyle, state, setStat
         )}
       </Droppable>
     </div>
-  )
+  );
 }
