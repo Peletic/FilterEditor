@@ -5,6 +5,7 @@ import Heading from "@/components/Heading/Heading";
 import ActionBar from "@/components/ActionBar/ActionBar";
 import NoFilterWarning from "@/components/Warnings/NoFilterWarning";
 import TabRoot from "@/components/Tabs/TabRoot";
+import Constants from "@/constants/constants";
 
 export default function Search({ filter, setFilter }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -52,13 +53,23 @@ export default function Search({ filter, setFilter }) {
       blacklist: {},
       whitelist: {},
       true_blacklist: {},
-      user_flip_finder: {}
+      user_flip_finder: {},
+      global: {
+      
+      }
     };
     
     for (const section of Object.keys(filter)) {
       (Array.isArray(filter[section]) ? filter[section] : Object.keys(filter[section])).forEach((key, el) => {
+        if (section === `global`) return
         simplified[section][key] = {};
       });
+    }
+    
+    if (filter.global) {
+      simplified.global = filter.global;
+    } else {
+      simplified.global = Constants.global;
     }
     
     console.log(JSON.stringify(simplified));
