@@ -9,13 +9,21 @@ import Constants from "@/constants/constants";
 
 export default function Search({ filter, setFilter }) {
   const [suggestions, setSuggestions] = useState([]);
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(-1);
   const [simpleFilter, setSimpleFilter] = useState({
     blacklist: {},
     whitelist: {},
     true_blacklist: {},
-    user_flip_finder: {}
+    user_flip_finder: {},
+    global: Constants.global
   });
+  const defaultFilterString = JSON.stringify({
+    blacklist: {},
+    whitelist: {},
+    true_blacklist: {},
+    user_flip_finder: {},
+    global: Constants.global
+  })
   const [ignoreLoaded, setIgnoreLoaded] = useState(false);
   
   const handleSearch = (event) => {
@@ -85,7 +93,8 @@ export default function Search({ filter, setFilter }) {
       blacklist: [],
       whitelist: {},
       true_blacklist: [],
-      user_flip_finder: {}
+      user_flip_finder: {},
+      global: {}
     };
     
     Object.keys(blacklist).forEach((itemId) => {
@@ -108,6 +117,8 @@ export default function Search({ filter, setFilter }) {
       };
     });
     
+    complicated.global = simplifiedFilter.global;
+    localStorage.setItem(`filter`, JSON.stringify(complicated));
     setFilter(complicated);
   };
   
@@ -124,17 +135,8 @@ export default function Search({ filter, setFilter }) {
   
   useEffect(() => {
     if (
-      JSON.stringify(simpleFilter) !==
-      JSON.stringify({
-        blacklist: {},
-        whitelist: {},
-        true_blacklist: {},
-        user_flip_finder: {}
-      })
-    ) {
-      console.log(`Setting filter to ` + JSON.stringify(simpleFilter));
+      JSON.stringify(simpleFilter) !== defaultFilterString) {
       complicateFilter(simpleFilter);
-      localStorage.setItem(`filter`, JSON.stringify(filter));
     }
   }, [simpleFilter]);
   

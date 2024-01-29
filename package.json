@@ -20,6 +20,7 @@
     "react-dom": "18.2.0",
     "react-virtualized": "^9.22.5",
     "react-virtualized-auto-sizer": "^1.0.20",
+    "react18-json-view": "^0.2.7",
     "string-similarity": "^4.0.4",
     "tailwindcss": "3.3.3"
   },

@@ -22,13 +22,18 @@
     height: 100%
 }
 
+:root::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
 body {
     margin: 0;
     padding: 0;
     color: rgb(var(--foreground-rgb));
     height: 100%;
     background: #050301;
-
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .widget {
@@ -38,3 +43,4 @@ body {
     -webkit-align-items: stretch;
     margin: 1rem;
 }
+
