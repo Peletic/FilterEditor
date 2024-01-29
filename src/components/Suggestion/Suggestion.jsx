@@ -1,17 +1,21 @@
 import Image from "next/image";
 
-export default function Suggestion({ name, image, index, setFilter, filter }) {
+export default function Suggestion({ name, image, index, setFilter, filter, activeId }) {
   return (
     <li key={index} className="relative">
       <button
         type="button"
         className="flex items-center w-full mx-2 my-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
         onClick={() => {
+          const activeName = activeId === 0 ? `blacklist` : activeId === 1 ? `whitelist` : activeId === 2 ? `user_flip_finder` : activeId === 3 ? `true_blacklist` : null;
+          console.log(activeName);
+          console.log(activeId)
+          if (activeName === null) return;
           setFilter({
             ...filter,
-            blacklist: {
-              ...(filter.blacklist ? filter.blacklist : null),
-              [`${name}`]: `global:true`
+            [activeName]: {
+              ...(filter[activeName] ? filter[activeName] : null),
+              [name + `=global:true`] : {}
             }
           });
         }}

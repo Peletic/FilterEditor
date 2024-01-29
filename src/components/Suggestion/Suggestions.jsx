@@ -1,6 +1,6 @@
 import Suggestion from "./Suggestion";
 
-export default function Suggestions({ suggestions, setFilter, filter, inputRef }) {
+export default function Suggestions({ suggestions, setFilter, filter, activeId }) {
   console.log(JSON.stringify(filter));
   return (
     <div className="block ml-10 absolute z-10 w-1/4 mt-2 bg-white rounded-md shadow-lg dark:bg-gray-800">
@@ -13,6 +13,7 @@ export default function Suggestions({ suggestions, setFilter, filter, inputRef }
             image={suggestion.image}
             setFilter={setFilter}
             filter={filter}
+            activeId={activeId}
           />
         ))}
       </ul>

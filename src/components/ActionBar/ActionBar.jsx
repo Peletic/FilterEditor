@@ -2,11 +2,20 @@ import Suggestions from "@/components/Suggestion/Suggestions";
 import Upload from "@/components/Handler/Upload";
 import Download from "@/components/Handler/Download";
 import Clear from "@/components/Handler/Clear";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { wait } from "next/dist/lib/wait";
 
-export default function ActionBar({ handleSearch, suggestions, setFilter, filter, setSimpleFilter, simpleFilter }) {
-  const [isInputFocused, setInputFocused] = useState(false)
+export default function ActionBar({
+  handleSearch,
+  suggestions,
+  setFilter,
+  filter,
+  setSimpleFilter,
+  simpleFilter,
+  activeTab,
+  simplifyFilter
+}) {
+  const [isInputFocused, setInputFocused] = useState(false);
   return (
     <div className="h-fit relative">
       <input
@@ -17,7 +26,8 @@ export default function ActionBar({ handleSearch, suggestions, setFilter, filter
         required
         onChange={handleSearch}
         onBlur={() => {
-          wait(150).then(() => setInputFocused(false))}
+          wait(150).then(() => setInputFocused(false));
+        }
         }
         onFocus={() => setInputFocused(true)}
       ></input>
@@ -26,15 +36,17 @@ export default function ActionBar({ handleSearch, suggestions, setFilter, filter
           suggestions={suggestions}
           setFilter={setSimpleFilter}
           filter={simpleFilter}
+          activeId={activeTab}
         />
       ) : null}
-      <Upload setFilter={setFilter} />
+      <Upload setFilter={setFilter} simplifyFilter={simplifyFilter}/>
       <Download filter={filter} setFilter={setFilter} />
       <Clear
         filter={filter}
         setFilter={setFilter}
         setSimplifiedFilter={setSimpleFilter}
       />
+      
     </div>
   );
 }

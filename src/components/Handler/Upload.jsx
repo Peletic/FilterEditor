@@ -1,4 +1,4 @@
-export default function Upload({ setFilter }) {
+export default function Upload({ setFilter, simplifyFilter }) {
   const handleUpload = (event) => {
     const file = event.target.files[0];
     if (file == null) {
@@ -11,7 +11,8 @@ export default function Upload({ setFilter }) {
     reader.onload = (event) => {
       const text = event.target.result;
       localStorage.setItem(`filter`, text.toString());
-      setFilter(JSON.parse(text));
+      simplifyFilter(JSON.parse(text.toString()));
+      setFilter(JSON.parse(text.toString()));
     };
   };
 

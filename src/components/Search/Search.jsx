@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { compareTwoStrings } from "string-similarity";
 import referenceIDs from "../../constants/search_ids.json";
-import Categories from "@/components/Renderer/Categories";
 import Heading from "@/components/Heading/Heading";
 import ActionBar from "@/components/ActionBar/ActionBar";
 import NoFilterWarning from "@/components/Warnings/NoFilterWarning";
+import TabRoot from "@/components/Tabs/TabRoot";
 
 export default function Search({ filter, setFilter }) {
   const [suggestions, setSuggestions] = useState([]);
+  const [activeTab, setActiveTab] = useState(0);
   const [simpleFilter, setSimpleFilter] = useState({
     blacklist: {},
     whitelist: {},
@@ -54,46 +55,15 @@ export default function Search({ filter, setFilter }) {
       user_flip_finder: {}
     };
     
-    const { blacklist, whitelist, true_blacklist, user_flip_finder } =
-      simplified;
-    
-    // if there are same keys and same attributes but different values, then group them together
-    // for example:     "ASPECT_OF_THE_DRAGON=rarity_upgraded:true&ultimate_combo:1",
-    //     "ASPECT_OF_THE_DRAGON=rarity_upgraded:true&ultimate_combo:2", would become
-    //     "ASPECT_OF_THE_DRAGON=rarity_upgraded:true&ultimate_combo:1,2"
-    
-    filter.blacklist.forEach((key) => {
-      const [itemId, attributes] = key.split(`=`);
-      const attributeList = attributes.split(`&`);
-      const uniqueAttributes = {};
-      const keyArr = [];
-      
-      attributeList.forEach((attribute) => {
-        const [attributeName, attributeValue] = attribute.split(`:`);
-        uniqueAttributes[attributeName] = attributeValue;
-        keyArr.push(attributeName);
+    for (const section of Object.keys(filter)) {
+      (Array.isArray(filter[section]) ? filter[section] : Object.keys(filter[section])).forEach((key, el) => {
+        simplified[section][key] = {};
       });
-      
-      const keyOnly = keyArr.join(`&`);
-      if (blacklist[itemId] == null) {
-        blacklist[itemId] = {};
-      }
-      
-      const itemRef = blacklist[itemId];
-      if (itemRef[keyOnly] == null) {
-        itemRef[keyOnly] = {};
-      }
-      
-      Object.keys(uniqueAttributes).forEach((attributeName) => {
-        if (itemRef[keyOnly][attributeName] == null) {
-          itemRef[keyOnly][attributeName] = new Set();
-        }
-        
-        itemRef[keyOnly][attributeName].add(uniqueAttributes[attributeName]);
-      });
-    });
+    }
     
-    return simplified;
+    console.log(JSON.stringify(simplified));
+    
+    setSimpleFilter(simplified);
   };
   
   const complicateFilter = (simplifiedFilter) => {
@@ -127,7 +97,7 @@ export default function Search({ filter, setFilter }) {
       };
     });
     
-    return complicated;
+    setFilter(complicated);
   };
   
   useEffect(() => {
@@ -136,10 +106,10 @@ export default function Search({ filter, setFilter }) {
       if (localFilter && JSON.parse(localFilter) !== null) {
         const tempLocalFilter = JSON.parse(localFilter);
         console.log(`Setting filter to ` + tempLocalFilter);
-        setFilter(tempLocalFilter);
+        simplifyFilter(tempLocalFilter);
       }
     }
-  }, [setFilter]);
+  }, []);
   
   useEffect(() => {
     if (
@@ -152,7 +122,7 @@ export default function Search({ filter, setFilter }) {
       })
     ) {
       console.log(`Setting filter to ` + JSON.stringify(simpleFilter));
-      setFilter(complicateFilter(simpleFilter));
+      complicateFilter(simpleFilter);
       localStorage.setItem(`filter`, JSON.stringify(filter));
     }
   }, [simpleFilter]);
@@ -160,13 +130,39 @@ export default function Search({ filter, setFilter }) {
   return (
     <div className="h-full flex flex-col shrink-0">
       <Heading />
-      <ActionBar handleSearch={handleSearch} suggestions={suggestions} setFilter={setFilter} filter={filter}
-        setSimpleFilter={setSimpleFilter} simpleFilter={simpleFilter} />
-      <Categories
-        simpleFilter={simpleFilter}
-        setSimpleFilter={setSimpleFilter}
-      />
+      <ActionBar handleSearch={handleSearch} suggestions={suggestions} setFilter={setFilter} filter={filter} setSimpleFilter={setSimpleFilter} simpleFilter={simpleFilter} activeTab={activeTab} simplifyFilter={simplifyFilter} />
+      <TabRoot setSimpleFilter={setSimpleFilter} simpleFilter={simpleFilter} activeId={activeTab} setActiveId={setActiveTab} complicateFilter={complicateFilter} />
       <NoFilterWarning filter={filter} setIgnoreLoaded={setIgnoreLoaded} ignoreLoaded={ignoreLoaded} />
     </div>
   );
 }
+
+/*const [itemId, attributes] = key.split(`=`);
+        const attributeList = attributes.split(`&`);
+        const uniqueAttributes = {};
+        const keyArr = [];
+        
+        attributeList.forEach((attribute) => {
+          const [attributeName, attributeValue] = attribute.split(`:`);
+          uniqueAttributes[attributeName] = attributeValue;
+          keyArr.push(attributeName);
+        });
+        
+        const keyOnly = keyArr.join(`&`);
+        if (simplified[section][itemId] == null) {
+          blacklist[itemId] = {};
+        }
+        
+        const itemRef = simplified[section][itemId];
+        if (itemRef[keyOnly] == null) {
+          itemRef[keyOnly] = {};
+        }
+        
+        Object.keys(uniqueAttributes).forEach((attributeName) => {
+          if (itemRef[keyOnly][attributeName] == null) {
+            itemRef[keyOnly][attributeName] = new Set();
+          }
+          
+          itemRef[keyOnly][attributeName].add(uniqueAttributes[attributeName]);
+        });*/
+       

@@ -4,7 +4,8 @@ export default function TrueBlacklist({
   state,
   setState,
   getListStyle,
-  getItemStyle
+  getItemStyle,
+  focusedId
 }) {
   return (
     <CategoryList
@@ -14,6 +15,7 @@ export default function TrueBlacklist({
       setState={setState}
       getListStyle={getListStyle}
       getItemStyle={getItemStyle}
+      focusedId={focusedId}
     ></CategoryList>
   );
 }
