@@ -58,7 +58,7 @@ export default function Categories({ simpleFilter, setSimpleFilter, focusedId, c
   const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: `none`,
-    padding: grid * 2,
+    padding: `2rem`,
     
     // change background colour if dragging
     background: isDragging ? `lightgreen` : `grey`,
@@ -69,7 +69,8 @@ export default function Categories({ simpleFilter, setSimpleFilter, focusedId, c
   });
   const getListStyle = isDraggingOver => ({
     background: isDraggingOver ? theme.colors.Highlight : theme.colors.Primary,
-    width: 250
+    width: 500,
+    
   });
   
   

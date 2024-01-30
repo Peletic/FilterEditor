@@ -1,6 +1,8 @@
 import Image from "next/image";
+import constantNames from "@/constants/search_ids.json"
 
-export default function Suggestion({ name, image, index, setFilter, filter, activeId }) {
+
+export default function Suggestion({ key, name, image, index, setFilter, filter, activeId }) {
   return (
     <li key={index} className="relative">
       <button
@@ -15,7 +17,7 @@ export default function Suggestion({ name, image, index, setFilter, filter, acti
             ...filter,
             [activeName]: {
               ...(filter[activeName] ? filter[activeName] : null),
-              [name + `=global:true`] : {}
+              [constantNames[name] + `=global:true`] : {}
             }
           });
         }}
