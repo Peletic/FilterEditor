@@ -1,0 +1,7 @@
+const candyUsed : TypeSelector = {
+    tag: "candyUsed",
+    possibleValues: [true],
+    extra: ""
+}
+
+export default candyUsed
