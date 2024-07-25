@@ -44,5 +44,5 @@ function handleClick(selection: PageStatus, filterContext: IFilterContext, setFi
 }) {
     console.log("Setting page selection to: " + selection)
 
-    setFilterContext(Object.create(filterContext).setPage(selection))
+    setFilterContext(filterContext.setPage(selection))
 }

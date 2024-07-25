@@ -42,7 +42,7 @@ export default function Home() {
             <main className={"w-full h-[70vh] my-auto flex flex-row"}>
 
                 <div className={"w-1/6"}>
-                    <Sidebar filterContext={filterContext} setFilterContext={setFilterContext}/>
+                    <Sidebar filterContext={filterContext} setFilterContext={(newFilterContext) => setFilterContext(Object.create(newFilterContext))}/>
                 </div>
                 <Divider/>
                 <div className={"w-3/6"}>
