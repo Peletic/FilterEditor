@@ -10,18 +10,19 @@ export type TypeItemSelectables = {
     tags: string[]
 }
 
-export interface IItem  {
-    itemId : string,
-    itemSelectables : TypeItemSelectables,
-    itemDisplayable : TypeItemDisplayable
+export interface IItem {
+    itemId: string,
+    itemSelectables: TypeItemSelectables,
+    itemDisplayable: TypeItemDisplayable
 }
 
 export class Item implements IItem {
-    constructor(itemId : string) {
+    constructor(itemId: string) {
         this.itemId = itemId
         this.itemDisplayable = getItemDisplayables(itemId)
         this.itemSelectables = getItemSelectables(itemId)
     }
+
     itemDisplayable: TypeItemDisplayable;
     itemId: string;
     itemSelectables: TypeItemSelectables;

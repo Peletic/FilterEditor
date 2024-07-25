@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const nil : TypeSelector = {
+const nil: TypeSelector = {
     tag: "nil",
     possibleValues: [],
     extra: "For clean item"

@@ -1,10 +1,8 @@
-import {TypeItemDisplayable, TypeItemSelectables} from "@/src/lib/generics";
-
-import {itemData} from "@/src/lib/data/generation/items"
-
+import {itemData} from "@/src/lib/data/parsing/items"
+import {TypeItemDisplayable, TypeItemSelectables} from "@/src/lib/generics/item";
 
 
-function getItemDisplayables(id : string) : TypeItemDisplayable {
+function getItemDisplayables(id: string): TypeItemDisplayable {
     const possibleResults = itemData[id]
 
     if (possibleResults) {
@@ -17,7 +15,7 @@ function getItemDisplayables(id : string) : TypeItemDisplayable {
     }
 }
 
-function getItemSelectables(id : string) : TypeItemSelectables {
+function getItemSelectables(id: string): TypeItemSelectables {
     const possibleResults = itemData[id]
 
     if (possibleResults) {

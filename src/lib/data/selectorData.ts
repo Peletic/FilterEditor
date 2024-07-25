@@ -1,6 +1,6 @@
-import {selectionDataSet} from "@/src/lib/data/generation/selectors";
+import {selectionDataSet} from "@/src/lib/data/parsing/selectors";
 
-function getSelectionValuePossibilities(tag : string) : any[] {
+function getSelectionValuePossibilities(tag: string): any[] {
     const possibleResult = selectionDataSet[tag]
     if (possibleResult) {
         return possibleResult.possibleValues

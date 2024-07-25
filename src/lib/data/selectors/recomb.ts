@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const rarity_upgraded : TypeSelector = {
+const rarity_upgraded: TypeSelector = {
     tag: "rarity_upgraded",
     possibleValues: [true],
     extra: ""

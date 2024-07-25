@@ -1,21 +1,21 @@
 import {ISelection} from "@/src/lib/generics/selection";
 
 export interface ISelectors {
-    stringify : () => string,
-    selections : ISelection[],
-    addSelection : (selection : ISelection) => boolean,
-    removeSelection : (selection : ISelection) => boolean
+    stringify: () => string,
+    selections: ISelection[],
+    addSelection: (selection: ISelection) => boolean,
+    removeSelection: (selection: ISelection) => boolean
 }
 
 export class Selectors implements ISelectors {
-    constructor(selections? : ISelection[]) {
+    constructor(selections?: ISelection[]) {
         this.selections = selections ? selections : [];
     }
 
     selections: ISelection[]
 
     stringify(): string {
-        const tagValueArray : string[] = []
+        const tagValueArray: string[] = []
         for (const selection of this.selections) {
             tagValueArray.push(selection.stringify())
         }

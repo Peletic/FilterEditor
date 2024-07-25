@@ -1,3 +1,3 @@
-export default function ContentAwareContext({ }) {
+export default function ContentAwareContext({}) {
 
 }

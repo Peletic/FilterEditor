@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const warped : TypeSelector = {
+const warped: TypeSelector = {
     tag: "warped",
     possibleValues: [true],
     extra: ""

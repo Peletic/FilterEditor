@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const candyUsed : TypeSelector = {
+const candyUsed: TypeSelector = {
     tag: "candyUsed",
     possibleValues: [true],
     extra: ""

@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const mossy : TypeSelector = {
+const mossy: TypeSelector = {
     tag: "mossy",
     possibleValues: [true],
     extra: ""

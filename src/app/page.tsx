@@ -1,7 +1,7 @@
 'use client'
 
 import Divider from "@/src/components/Divider/Divider";
-import {useEffect, useLayoutEffect, useState} from "react";
+import {useState} from "react";
 
 import {BlacklistFilterSection} from "@/src/lib/implementations/blacklist/blacklist";
 import {UserFlipFinderFilterSection} from "@/src/lib/implementations/user_flip_finder/userFlipFinder";

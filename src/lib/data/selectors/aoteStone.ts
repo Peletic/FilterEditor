@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const aoteStone : TypeSelector = {
+const aoteStone: TypeSelector = {
     tag: "aote_stone",
     possibleValues: [true],
     extra: ""

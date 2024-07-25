@@ -4,7 +4,7 @@ export interface IFilterSection {
     contents: IGenericSectionEntry[],
     objectify: () => any,
     stringify: () => string,
-    removeEntry: (entry : IGenericSectionEntry) => boolean
+    removeEntry: (entry: IGenericSectionEntry) => boolean
 }
 
 export class GenericFilterSection implements IFilterSection {

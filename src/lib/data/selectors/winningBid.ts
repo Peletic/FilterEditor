@@ -1,6 +1,6 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
-const winningBid : TypeSelector = {
+const winningBid: TypeSelector = {
     tag: "winning_bid_value",
     possibleValues: ["low", "medium", "max"],
     extra: "For clean item"

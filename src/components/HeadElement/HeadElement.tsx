@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function HeadElement () {
+export default function HeadElement() {
     return (
         <Head>
             <link
