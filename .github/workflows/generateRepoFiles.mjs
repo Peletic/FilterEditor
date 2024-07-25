@@ -55,7 +55,8 @@ async function read() {
     console.log(ultimates)
     console.log(attributes)
 
-    const attrList = attributes["lore"].map(str => str.toString().substring(2, str.toString().length - 2).toLowerCase().replaceAll(" ", "_")).splice(-2, 2)
+    const attrList = attributes["lore"].map(str => str.toString().substring(2, str.toString().length - 2).toLowerCase().replaceAll(" ", "_"))
+    attrList.splice(-2, 2)
     console.log(attrList)
 
     const ultIds = ultimates.map(el => el["internalname"].toString()).filter(str => str.endsWith(";5")).map(str => str.replaceAll(";5", ""))

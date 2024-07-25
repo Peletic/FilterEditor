@@ -1,3 +1,5 @@
+import {TypeSelector} from "@/src/lib/generics";
+
 const globalFlag : TypeSelector = {
     tag: "global",
     possibleValues: [true],

@@ -1,3 +1,5 @@
+import {TypeSelector} from "@/src/lib/generics";
+
 const nil : TypeSelector = {
     tag: "nil",
     possibleValues: [],

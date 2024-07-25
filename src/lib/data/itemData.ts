@@ -1,13 +1,11 @@
 import {TypeItemDisplayable, TypeItemSelectables} from "@/src/lib/generics";
 
-const fakeDataSet : {[key : string]: TypeItemDisplayable & TypeItemSelectables} = {
-
-}
+import {itemData} from "@/src/lib/data/generation/items"
 
 
 
 function getItemDisplayables(id : string) : TypeItemDisplayable {
-    const possibleResults = fakeDataSet[id]
+    const possibleResults = itemData[id]
 
     if (possibleResults) {
         return possibleResults
@@ -20,7 +18,7 @@ function getItemDisplayables(id : string) : TypeItemDisplayable {
 }
 
 function getItemSelectables(id : string) : TypeItemSelectables {
-    const possibleResults = fakeDataSet[id]
+    const possibleResults = itemData[id]
 
     if (possibleResults) {
         return possibleResults
