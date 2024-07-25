@@ -6,4 +6,4 @@ const mossy : TypeSelector = {
     extra: ""
 }
 
-export default mossy
+export {mossy}

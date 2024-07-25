@@ -6,4 +6,4 @@ const roundedLevel : TypeSelector = {
     extra: ""
 }
 
-export default roundedLevel
+export {roundedLevel}

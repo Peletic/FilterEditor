@@ -1,4 +1,5 @@
-import {GenericFilterSection, GenericSectionEntry} from "@/src/lib/generics";
+import {GenericFilterSection} from "../../generics/filterSection";
+import {GenericSectionEntry} from "@/src/lib/generics/sectionEntry";
 
 export class BlacklistSectionEntry extends GenericSectionEntry {}
 

@@ -1,5 +1,5 @@
-import {IItem} from "@/src/lib/generics/item";
-import {ISelectors, Selectors} from "@/src/lib/generics/selectors";
+import {IItem} from "./item";
+import {ISelectors, Selectors} from "./selectors";
 
 export interface IGenericSectionEntry {
     item : IItem,

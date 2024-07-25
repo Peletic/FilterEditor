@@ -6,4 +6,4 @@ const warped : TypeSelector = {
     extra: ""
 }
 
-export default warped
+export {warped}

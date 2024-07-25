@@ -6,4 +6,4 @@ const candyUsed : TypeSelector = {
     extra: ""
 }
 
-export default candyUsed
+export {candyUsed}

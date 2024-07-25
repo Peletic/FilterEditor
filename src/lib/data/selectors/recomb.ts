@@ -6,4 +6,4 @@ const rarity_upgraded : TypeSelector = {
     extra: ""
 }
 
-export default rarity_upgraded
+export {rarity_upgraded}

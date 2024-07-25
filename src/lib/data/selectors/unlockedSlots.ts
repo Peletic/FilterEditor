@@ -6,4 +6,4 @@ const slots : TypeSelector = {
     extra: ""
 }
 
-export default slots
+export {slots}

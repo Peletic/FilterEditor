@@ -6,4 +6,4 @@ const globalFlag : TypeSelector = {
     extra: "Default value for any with the id."
 }
 
-export default globalFlag
+export {globalFlag}

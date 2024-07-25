@@ -6,4 +6,4 @@ const heldItem : TypeSelector = {
     extra: ""
 }
 
-export default heldItem
+export {heldItem}

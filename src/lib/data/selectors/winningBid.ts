@@ -6,4 +6,4 @@ const winningBid : TypeSelector = {
     extra: "For clean item"
 }
 
-export default winningBid
+export {winningBid}

@@ -6,4 +6,4 @@ const growthProt : TypeSelector = {
     extra: ""
 }
 
-export default growthProt
+export {growthProt}

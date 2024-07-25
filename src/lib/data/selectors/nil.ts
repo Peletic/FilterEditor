@@ -6,4 +6,4 @@ const nil : TypeSelector = {
     extra: "For clean item"
 }
 
-export default nil
+export {nil}

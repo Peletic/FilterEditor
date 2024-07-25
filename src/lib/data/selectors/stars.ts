@@ -6,4 +6,4 @@ const stars : TypeSelector = {
     extra: ""
 }
 
-export default stars
+export {stars}

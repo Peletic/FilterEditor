@@ -6,4 +6,4 @@ const abilityScroll : TypeSelector = {
     extra: "For clean item"
 }
 
-export default abilityScroll
+export {abilityScroll}

@@ -6,4 +6,4 @@ const aoteStone : TypeSelector = {
     extra: ""
 }
 
-export default aoteStone
+export {aoteStone}
