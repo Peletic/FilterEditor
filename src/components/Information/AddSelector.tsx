@@ -15,7 +15,7 @@ export default function AddSelector({filterContext, setFilterContext}: {
 
 
     return (
-        <div className={"w-fit"}>
+        <div className={"w-fit ml-auto"}>
             <div className={"w-64 flex-row-reverse flex"}>
                 <button className={"w-fit"} onClick={() => setDropdown(!dropdown)}>{!dropdown ? <RiArrowDropDownLine size={24}/> : <RiArrowDropUpLine size={24}/>}</button>
                 <input placeholder={"Search"} className={"w-full px-2"} onKeyUp={(e) => setQuery(e.currentTarget.value)}/>

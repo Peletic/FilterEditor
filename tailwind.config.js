@@ -18,6 +18,7 @@ module.exports = {
       colors: {
         "font-color": "#ffffff",
         "accent": "#4d49fb",
+        "secondary": "#50535c",
       }
     },
     },

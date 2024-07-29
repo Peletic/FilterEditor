@@ -13,8 +13,13 @@ export interface IFilterSection {
 
 export class GenericFilterSection implements IFilterSection {
     constructor(contents?: IGenericSectionEntry[]) {
-        this.contents = contents ? contents : []
+        this.contents = []
         this.nextId = 1
+        if (contents) {
+            for (const content of contents) {
+                this.addEntry(content)
+            }
+        }
     }
 
     contents: IGenericSectionEntry[];

@@ -1,4 +1,4 @@
-import {GenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
+import {GenericSectionEntry, IGenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
 import {IItem} from "@/src/lib/generics/item";
 import {ISelectors} from "@/src/lib/generics/selectors";
 import {GenericFilterSection} from "@/src/lib/generics/filterSection";
@@ -20,9 +20,12 @@ export class UserFlipFinderSectionEntry extends GenericSectionEntry implements I
 }
 
 export class UserFlipFinderFilterSection extends GenericFilterSection {
+    addEntry(entry: IGenericSectionEntry): boolean {
+        return super.addEntry(new UserFlipFinderSectionEntry(entry.item, entry.selectors));
+    }
+
     objectify(): any {
         const object: { [key: string]: any } = {}
-
         for (const entry of this.contents as IGenericValuedSectionEntry[]) {
             object[entry.stringify()] = entry.assignedValue
         }

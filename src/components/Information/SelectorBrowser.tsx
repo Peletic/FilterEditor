@@ -6,7 +6,7 @@ export default function SelectorBrowser({filterContext, setFilterContext}: {
     setFilterContext: (context: IFilterContext) => void
 }) {
     return (
-        <div>
+        <div className={"mt-4"}>
             {
                 filterContext.focusedEntry && filterContext[filterContext.focusedEntry.section].findEntryById(filterContext.focusedEntry.id)?.selectors.selections.map((selector, index) => {
                     return (

@@ -1,11 +1,11 @@
 import {IFilterContext} from "@/src/lib/generics/filterContext";
 import React, {useRef, useState} from "react";
 import {similarityOf} from "@/src/lib/utils/stringCompare";
-import SuggestedEntry from "@/src/components/EntryAdder/SuggestedEntry"
+import SuggestedEntry from "@/src/components/ItemBrowser/SuggestedEntry"
 import {itemData} from "@/src/lib/data/parsing/items";
 import {getItemDisplayables} from "@/src/lib/data/itemData";
 
-export default function EntryAdder({filterContext, setFilterContext, section}: {
+export default function ItemBrowser({filterContext, setFilterContext, section}: {
     filterContext: IFilterContext,
     setFilterContext: (newContext: IFilterContext) => void,
     section: "blacklist" | "whitelist" | "user_flip_finder"
@@ -14,12 +14,12 @@ export default function EntryAdder({filterContext, setFilterContext, section}: {
     const ref = useRef<HTMLInputElement>()
 
     return (
-        <div>
+        <div className={"float-right rounded-lg bg-secondary p-2 m-4 w-72"}>
             {// @ts-ignore
-                <input ref={ref} placeholder={"Search"} className={"w-64 px-2"} onKeyUp={(e) => setQuery(e.currentTarget.value)}/>
+                <input ref={ref} placeholder={"Search"} style={{all: "unset"}} className={"appearance-none w-72 p-2"} onKeyUp={(e) => setQuery(e.currentTarget.value)}/>
             }
             {
-                (query && <div className={"h-fit max-h-36 w-64 px-2 overflow-y-scroll bg-accent/70"}>
+                (query && <div className={"h-fit mt-2 max-h-36 w-full px-2 overflow-y-scroll bg-accent/70"}>
                     {
                         Object.keys(itemData).sort((a, b) => similarityOf(a, query) - similarityOf(b, query)).reverse().slice(0, 40).map((itemId, index) => {
                             return <SuggestedEntry filterContext={filterContext} setFilterContext={setFilterContext} key={index} itemId={itemId} callback={() => {
