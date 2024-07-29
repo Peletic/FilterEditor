@@ -12,6 +12,7 @@ import {GenericFilterSection} from "@/src/lib/generics/filterSection";
 import Content from "@/src/components/Content/Content";
 import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
+import Information from "@/src/components/Information/Information";
 
 
 class FilterContext implements IFilterContext {
@@ -20,12 +21,14 @@ class FilterContext implements IFilterContext {
         this.blacklist = new BlacklistFilterSection()
         this.user_flip_finder = new UserFlipFinderFilterSection()
         this.whitelist = new WhitelistFilterSection()
+        this.focusedEntry = null
     }
 
     blacklist: GenericFilterSection;
     page: PageStatus;
     user_flip_finder: GenericFilterSection;
     whitelist: GenericFilterSection;
+    focusedEntry: { item: string; section: "blacklist" | "whitelist" | "user_flip_finder"; } | null;
 
     setPage(newPage: PageStatus): IFilterContext {
         this.page = newPage
@@ -35,6 +38,7 @@ class FilterContext implements IFilterContext {
 
 export default function Home() {
     const [filterContext, setFilterContext] = useState(new FilterContext());
+
 
     return (
         <div className={` h-full relative`}>
@@ -46,11 +50,11 @@ export default function Home() {
                 </div>
                 <Divider/>
                 <div className={"w-3/6"}>
-                    <Content filterContext={filterContext} setFilterContext={setFilterContext}/>
+                    <Content filterContext={filterContext} setFilterContext={(newFilterContext : IFilterContext) => setFilterContext(Object.create(newFilterContext))}/>
                 </div>
                 <Divider/>
                 <div className={"w-2/6"}>
-                    test
+                    <Information filterContext={filterContext} setFilterContext={(newFilterContext : IFilterContext) => setFilterContext(Object.create(newFilterContext))}/>
                 </div>
             </main>
             <Footer/>

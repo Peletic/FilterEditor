@@ -14,11 +14,11 @@ export default function Content({filterContext, setFilterContext}: {
     return (
         <>
             {
-                page === "blacklist" ? <BlacklistFrame/>
-                    : page === "whitelist" ? <WhitelistFrame/>
-                        : page === "user_flip_finder" ? <UserFlipFinderFrame/>
+                page === "blacklist" ? <BlacklistFrame filterContext={filterContext} setFilterContext={setFilterContext}/>
+                    : page === "whitelist" ? <WhitelistFrame filterContext={filterContext} setFilterContext={setFilterContext}/>
+                        : page === "user_flip_finder" ? <UserFlipFinderFrame filterContext={filterContext} setFilterContext={setFilterContext}/>
                             : page === "landing" ? <LandingFrame/>
-                                : page === "true_blacklist" ? <TrueBlacklistFrame/>
+                                : page === "true_blacklist" ? <TrueBlacklistFrame filterContext={filterContext} setFilterContext={setFilterContext}/>
                                     : <div/>
             }
         </>

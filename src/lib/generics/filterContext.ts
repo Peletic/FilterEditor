@@ -8,7 +8,5 @@ export interface IFilterContext {
     whitelist: GenericFilterSection,
     user_flip_finder: GenericFilterSection,
     setPage: (newPage: PageStatus) => IFilterContext,
-    /*setBlacklist : (newBlacklist : GenericFilterSection) => IFilterContext,
-    setWhitelist : (newWhitelist : GenericFilterSection) => IFilterContext,
-    setUserFlipFinder : (newUserFlipFinder : GenericFilterSection) => IFilterContext*/
+    focusedEntry: {item: () => string, section: "blacklist" | "whitelist" | "user_flip_finder", id: number } | null,
 }

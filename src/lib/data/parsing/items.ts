@@ -6,7 +6,7 @@ const itemData: { [key: string]: TypeItemDisplayable & TypeItemSelectables } = {
 
 for (const item of items) {
     itemData[item.itemId] = {
-        confident: false, details: item.displayName, name: item.displayName, tags: []
+        confident: false, details: item.desc.join("\n"), name: item.displayName, tags: []
     }
 }
 

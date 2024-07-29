@@ -3,7 +3,7 @@ import {getSelectionValuePossibilities} from "@/src/lib/data/selectorData";
 export interface ISelection {
     tag: string,
     possibleValues: any[],
-    value: any,
+    value: any | null,
     stringify: () => string,
     matches: (comparate: ISelection) => boolean
 }
@@ -20,12 +20,12 @@ export class SelectorSelection implements ISelection {
     }
 
     tag: string;
-    value: any;
+    value: any | null;
     possibleValues: any[];
 
     stringify(): string {
         if (this.value) {
-            return `${this.tag}:${this.value}`
+            return `${this.tag}:${this.value.toString()}`
         } else {
             return `${this.tag}`
         }

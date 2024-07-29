@@ -8,7 +8,7 @@ import fillAttributes from "@/src/lib/data/fillableSelectors/attribute"
 import {TypeSelector} from "@/src/lib/generics/selector";
 
 
-const selectionDataSet: { [key: string]: TypeSelector } = {}
+const selectorDataSet: { [key: string]: TypeSelector } = {}
 console.log(selectors)
 
 for (const test in selectors) {
@@ -16,21 +16,21 @@ for (const test in selectors) {
 }
 
 for (const selector of Object.values(selectors)) {
-    selectionDataSet[selector.tag] = selector
+    selectorDataSet[selector.tag] = selector
 }
 
 for (const ultimateId of ultimates) {
-    selectionDataSet[ultimateId.toLowerCase()] = {
+    selectorDataSet[ultimateId.toLowerCase()] = {
         ...fillUltimates,
         tag: ultimateId.toLowerCase()
     }
 }
 
 for (const attributeId of attributes) {
-    selectionDataSet[attributeId.toLowerCase()] = {
+    selectorDataSet[attributeId.toLowerCase()] = {
         ...fillAttributes,
         tag: attributeId.toLowerCase()
     }
 }
 
-export {selectionDataSet}
+export {selectorDataSet}

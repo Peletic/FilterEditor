@@ -27,3 +27,7 @@ export class Item implements IItem {
     itemId: string;
     itemSelectables: TypeItemSelectables;
 }
+
+export function cleanFormattedString(input: string): string {
+    return input.replace(/§./g, "")
+}

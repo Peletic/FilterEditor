@@ -1,4 +1,4 @@
-import {TypeSelector} from "@/src/lib/generics";
+import {TypeSelector} from "@/src/lib/generics/selector";
 
 const attribute: TypeSelector = {
     tag: "",

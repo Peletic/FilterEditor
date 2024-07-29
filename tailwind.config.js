@@ -16,7 +16,8 @@ module.exports = {
         '10': '0.1'
       },
       colors: {
-        "font-color": "#ffffff"
+        "font-color": "#ffffff",
+        "accent": "#4d49fb",
       }
     },
     },

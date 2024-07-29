@@ -4,7 +4,9 @@ export interface ISelectors {
     stringify: () => string,
     selections: ISelection[],
     addSelection: (selection: ISelection) => boolean,
-    removeSelection: (selection: ISelection) => boolean
+    removeSelection: (selection: ISelection) => boolean,
+    removeSelectionByTag: (tag: string) => boolean,
+    editSelectionByTag: (tag: string, value: any) => boolean
 }
 
 export class Selectors implements ISelectors {
@@ -20,7 +22,7 @@ export class Selectors implements ISelectors {
             tagValueArray.push(selection.stringify())
         }
 
-        return tagValueArray.join("&");
+        return tagValueArray.length > 0 ? tagValueArray.join("&") : "global:true";
     }
 
     addSelection(selection: ISelection): boolean {
@@ -40,4 +42,21 @@ export class Selectors implements ISelectors {
         return false;
     }
 
+    removeSelectionByTag(tag: string): boolean {
+        const selection = this.selections.findIndex((selection) => selection.tag === tag)
+        if (selection !== -1) {
+            this.selections.splice(selection, 1)
+            return true;
+        }
+        return false;
+    }
+
+    editSelectionByTag(tag: string, value: any): boolean {
+        const selection = this.selections.findIndex((selection) => selection.tag === tag)
+        if (selection !== -1) {
+            this.selections[selection].value = value
+            return true;
+        }
+        return false;
+    }
 }

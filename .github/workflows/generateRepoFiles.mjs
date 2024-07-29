@@ -68,8 +68,16 @@ async function read() {
             "displayName": entry["displayname"],
             "desc": entry["lore"]
         }
+    }).map((entry) => {
+        if(entry.itemId.includes(';') && entry.desc.join(" ").includes("Pet") || entry.desc.join(" ").includes("Morph")) {
+            const num = parseInt(entry.itemId.split(";")[1])
+            entry.itemId = "PET_" + entry.itemId.split(";")[0] + `_${num === 0 ? "COMMON" : num === 1 ? "UNCOMMON" : num === 2 ? "RARE" : num === 3 ? "EPIC" : num === 4 ? "LEGENDARY" : num === 5 ? "MYTHIC" : "SPECIAL"}`
+            entry.displayName = "[LVL] " + entry.displayName.replaceAll("[Lvl {LVL}]", "")
+        }
+        return entry
     })
-    console.log(items)
+
+
 
     fs.writeFileSync("src/lib/data/constants/attributes.json", JSON.stringify(attrList));
     fs.writeFileSync("src/lib/data/constants/ultimates.json", JSON.stringify(ultIds));
