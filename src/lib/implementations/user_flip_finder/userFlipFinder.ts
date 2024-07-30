@@ -16,11 +16,21 @@ export class UserFlipFinderSectionEntry extends GenericSectionEntry implements I
         }
     }
 
-    assignedValue: { scaleFactor?: number, overwritePrice?: boolean };
+    assignedValue: { scaleFactor: number, overwritePrice: boolean };
 }
 
 export class UserFlipFinderFilterSection extends GenericFilterSection {
-    addEntry(entry: IGenericSectionEntry): boolean {
+    declare contents: UserFlipFinderSectionEntry[]
+
+    findEntryById(id: number): UserFlipFinderSectionEntry | null {
+        return super.findEntryById(id) as UserFlipFinderSectionEntry;
+    }
+
+    findEntry(entryString: string): UserFlipFinderSectionEntry | null {
+        return super.findEntry(entryString) as UserFlipFinderSectionEntry;
+    }
+
+    addEntry(entry: UserFlipFinderSectionEntry): boolean {
         return super.addEntry(new UserFlipFinderSectionEntry(entry.item, entry.selectors));
     }
 

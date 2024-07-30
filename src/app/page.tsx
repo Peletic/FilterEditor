@@ -24,10 +24,10 @@ class FilterContext implements IFilterContext {
         this.focusedEntry = null
     }
 
-    blacklist: GenericFilterSection;
+    blacklist: BlacklistFilterSection;
     page: PageStatus;
-    user_flip_finder: GenericFilterSection;
-    whitelist: GenericFilterSection;
+    user_flip_finder: UserFlipFinderFilterSection;
+    whitelist: WhitelistFilterSection;
     focusedEntry: { item: string; section: "blacklist" | "whitelist" | "user_flip_finder"; } | null;
 
     setPage(newPage: PageStatus): IFilterContext {

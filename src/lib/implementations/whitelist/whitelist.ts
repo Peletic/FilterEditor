@@ -1,4 +1,4 @@
-import {GenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
+import {GenericSectionEntry, IGenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
 import {IItem} from "@/src/lib/generics/item";
 import {ISelectors} from "@/src/lib/generics/selectors";
 import {GenericFilterSection} from "@/src/lib/generics/filterSection";
@@ -16,10 +16,20 @@ export class WhitelistSectionEntry extends GenericSectionEntry implements IGener
         }
     }
 
-    assignedValue: { profit?: number, profit_percentage?: number };
+    assignedValue: { profit: number, profit_percentage: number };
 }
 
 export class WhitelistFilterSection extends GenericFilterSection {
+    declare contents: WhitelistSectionEntry[]
+
+    findEntryById(id: number): WhitelistSectionEntry | null {
+        return super.findEntryById(id) as WhitelistSectionEntry;
+    }
+
+    findEntry(entryString: string): WhitelistSectionEntry | null {
+        return super.findEntry(entryString) as WhitelistSectionEntry;
+    }
+
     objectify(): any {
         const object: { [key: string]: any } = {}
 
@@ -32,5 +42,9 @@ export class WhitelistFilterSection extends GenericFilterSection {
 
     stringify(): string {
         return JSON.stringify({"whitelist": this.objectify()})
+    }
+
+    addEntry(entry: WhitelistSectionEntry): boolean {
+        return super.addEntry(new WhitelistSectionEntry(entry.item, entry.selectors));
     }
 }

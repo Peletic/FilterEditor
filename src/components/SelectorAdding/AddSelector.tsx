@@ -3,7 +3,7 @@ import {useState} from "react";
 import {RiArrowDropDownLine, RiArrowDropUpLine} from "react-icons/ri";
 import {selectorDataSet} from "@/src/lib/data/parsing/selectors";
 import {similarityOf} from "@/src/lib/utils/stringCompare";
-import SelectorComponent from "@/src/components/Information/SelectorComponent";
+import SelectorComponent from "@/src/components/SelectorAdding/SelectorComponent";
 import {SelectorSelection} from "@/src/lib/generics/selection";
 
 export default function AddSelector({filterContext, setFilterContext}: {
@@ -15,7 +15,7 @@ export default function AddSelector({filterContext, setFilterContext}: {
 
 
     return (
-        <div className={"w-fit ml-auto"}>
+        <div className={"w-fit absolute right-4 z-10"}>
             <div className={"w-64 flex-row-reverse flex"}>
                 <button className={"w-fit"} onClick={() => setDropdown(!dropdown)}>{!dropdown ? <RiArrowDropDownLine size={24}/> : <RiArrowDropUpLine size={24}/>}</button>
                 <input placeholder={"Search"} className={"w-full px-2"} onKeyUp={(e) => setQuery(e.currentTarget.value)}/>
