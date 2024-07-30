@@ -26,7 +26,7 @@ export class GenericFilterSection implements IFilterSection {
     nextId: number;
 
     objectify(): any {
-        return this.contents.map(val => val.stringify)
+        return this.contents.map(val => val.stringify())
     }
 
     stringify(): string {
