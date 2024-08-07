@@ -6,8 +6,11 @@ export default function GlobalSettingsFrame({filterContext, setFilterContext}: {
     setFilterContext: (newContext: IFilterContext) => void
 }) {
     return (
-        <div>
+        <div className={"flex flex-col relative h-full"}>
+            <div className={"relative flex flex-row h-16 min-h-16"}>
+                <h2 className={"text-xl my-auto ml-4"}>Global Settings</h2>
+            </div>
             <GlobalJsonBrowser filterContext={filterContext} setFilterContext={setFilterContext}/>
         </div>
-    )
+    );
 }
