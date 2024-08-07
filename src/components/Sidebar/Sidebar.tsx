@@ -15,7 +15,7 @@ export default function Sidebar({filterContext, setFilterContext}: {
     const handleWL = () => handleClick("whitelist", filterContext, setFilterContext)
     const handleUFF = () => handleClick("user_flip_finder", filterContext, setFilterContext)
     const handleTBL = () => handleClick("true_blacklist", filterContext, setFilterContext)
-    const handleExtra = () => handleClick("extra", filterContext, setFilterContext)
+    const handleExtra = () => handleClick("global", filterContext, setFilterContext)
 
     return (
         <div className={"h-full justify-between flex flex-col relative"}>
@@ -30,7 +30,7 @@ export default function Sidebar({filterContext, setFilterContext}: {
                 <XDivider/>
                 <SidebarEntry handleClick={handleTBL} title={"True Blacklist"}/>
                 <XDivider/>
-                <SidebarEntry handleClick={handleExtra} title={"Extra"}/>
+                <SidebarEntry handleClick={handleExtra} title={"Global Settings"}/>
                 <XDivider/>
                 <IoIosCloudDownload className={"ml-auto h-24"} size={64} onClick={() => {
                     console.log("Download button clicked")

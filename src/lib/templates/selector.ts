@@ -2,7 +2,7 @@
 const templateSelector : TypeSelector = {
     tag: "",
     possibleValues: [],
-    extra: ""
+    global: ""
 }
 
 module.exports = templateSelector*/

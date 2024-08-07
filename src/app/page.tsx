@@ -13,6 +13,7 @@ import Footer from "@/src/components/Footer/Footer";
 import Header from "@/src/components/Header/Header";
 import Information from "@/src/components/Information/Information";
 import {TrueBlacklist} from "@/src/lib/implementations/true_blacklist/trueBlacklist";
+import {GlobalSettings} from "@/src/lib/implementations/global/globalSettings";
 
 
 class FilterContext implements IFilterContext {
@@ -22,6 +23,7 @@ class FilterContext implements IFilterContext {
         this.user_flip_finder = new UserFlipFinderFilterSection()
         this.whitelist = new WhitelistFilterSection()
         this.true_blacklist = new TrueBlacklist()
+        this.globalSettings = new GlobalSettings()
         this.focusedEntry = null
     }
 
@@ -31,6 +33,7 @@ class FilterContext implements IFilterContext {
     whitelist: WhitelistFilterSection;
     true_blacklist: TrueBlacklist;
     focusedEntry: { item: () => string; section: "blacklist" | "whitelist" | "user_flip_finder"; id: number } | null;
+    globalSettings: GlobalSettings
 
     setPage(newPage: PageStatus): IFilterContext {
         this.page = newPage
