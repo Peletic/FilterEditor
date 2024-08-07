@@ -13,7 +13,7 @@ export default function Content({filterContext, setFilterContext}: {
     const page = filterContext.page
 
     return (
-        <>
+        <div className={"m-0"}>
             {
                 page === "blacklist" ?
                     <BlacklistFrame filterContext={filterContext} setFilterContext={setFilterContext}/>
@@ -28,7 +28,7 @@ export default function Content({filterContext, setFilterContext}: {
                                                                                setFilterContext={setFilterContext}/>
                                         : <div/>
             }
-        </>
+        </div>
     )
 
 

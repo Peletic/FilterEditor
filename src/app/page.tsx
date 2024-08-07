@@ -46,10 +46,9 @@ export default function Home() {
 
 
     return (
-        <div className={` h-full relative`}>
+        <div className={"min-h-[100vh] w-full flex flex-col justify-items-start"}>
             <Header/>
-            <main className={"w-full h-[70vh] my-auto flex flex-row"}>
-
+            <main className={"w-full h-[85vh] flex flex-row"}>
                 <div className={"w-1/6"}>
                     <Sidebar filterContext={filterContext} setFilterContext={(newFilterContext) => setFilterContext(Object.create(newFilterContext))}/>
                 </div>

@@ -32,13 +32,19 @@ export default function Sidebar({filterContext, setFilterContext}: {
                 <XDivider/>
                 <SidebarEntry handleClick={handleExtra} title={"Global Settings"}/>
                 <XDivider/>
-                <IoIosCloudDownload className={"ml-auto h-24"} size={64} onClick={() => {
+                <IoIosCloudDownload className={"ml-auto h-24 mr-2 cursor-pointer"} size={32} onClick={() => {
                     console.log("Download button clicked")
-                    alert(filterContextToJson(filterContext))
+                    const content = filterContextToJson(filterContext)
+                    const file = new Blob([content], {type: 'text/plain'});
+                    const el = document.createElement("a")
+                    el.href = URL.createObjectURL(file)
+                    el.download = "filter.json"
+                    document.body.appendChild(el)
+                    el.click()
                 }}/>
             </div>
-            <div className={"absolute bottom-0 right-0"}>
-                Settings button somewhere
+            <div className={"absolute bottom-0 right-2 font-extralight text-sm"}>
+                Made with ♥
             </div>
         </div>
     )

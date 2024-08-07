@@ -14,8 +14,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={"flex flex-col"}>
-        <HeadElement/>
+        <body className={"flex h-full w-full flex-col"}>
         {children}
         </body>
         </html>
