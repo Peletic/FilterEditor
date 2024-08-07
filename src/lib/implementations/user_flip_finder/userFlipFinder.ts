@@ -1,4 +1,4 @@
-import {GenericSectionEntry, IGenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
+import {GenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
 import {IItem} from "@/src/lib/generics/item";
 import {ISelectors} from "@/src/lib/generics/selectors";
 import {GenericFilterSection} from "@/src/lib/generics/filterSection";
@@ -30,7 +30,7 @@ export class UserFlipFinderFilterSection extends GenericFilterSection {
         return super.findEntry(entryString) as UserFlipFinderSectionEntry;
     }
 
-    addEntry(entry: UserFlipFinderSectionEntry): boolean {
+    addEntry(entry: GenericSectionEntry): boolean {
         return super.addEntry(new UserFlipFinderSectionEntry(entry.item, entry.selectors));
     }
 

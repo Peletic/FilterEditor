@@ -7,7 +7,8 @@ export function filterContextToJson(context: IFilterContext): string {
     const object: any = {
         blacklist: context.blacklist.objectify(),
         whitelist: context.whitelist.objectify(),
-        user_flip_finder: context.user_flip_finder.objectify()
+        user_flip_finder: context.user_flip_finder.objectify(),
+        true_blacklist: context.true_blacklist.objectify()
     }
 
     return JSON.stringify(object)

@@ -1,4 +1,4 @@
-import {GenericSectionEntry, IGenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
+import {GenericSectionEntry, IGenericValuedSectionEntry} from "@/src/lib/generics/sectionEntry";
 import {IItem} from "@/src/lib/generics/item";
 import {ISelectors} from "@/src/lib/generics/selectors";
 import {GenericFilterSection} from "@/src/lib/generics/filterSection";
@@ -44,7 +44,7 @@ export class WhitelistFilterSection extends GenericFilterSection {
         return JSON.stringify({"whitelist": this.objectify()})
     }
 
-    addEntry(entry: WhitelistSectionEntry): boolean {
+    addEntry(entry: GenericSectionEntry): boolean {
         return super.addEntry(new WhitelistSectionEntry(entry.item, entry.selectors));
     }
 }
