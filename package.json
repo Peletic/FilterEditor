@@ -13,7 +13,7 @@
     "autoprefixer": "10.4.15",
     "es-shim-unscopables": "^1.0.2",
     "eslint-config-next": "^14.2.5",
-    "next": "^14.2.5",
+    "next": "15.1.2",
     "node-releases": "^2.0.13",
     "postcss": "8.4.31",
     "react": "18.2.0",
