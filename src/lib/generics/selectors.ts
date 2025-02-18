@@ -10,7 +10,7 @@ export interface ISelectors {
 }
 
 export class Selectors implements ISelectors {
-    constructor(selections?: ISelection[]) {
+    constructor(...selections: ISelection[]) {
         this.selections = selections ? selections : [];
     }
 

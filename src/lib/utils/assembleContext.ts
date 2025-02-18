@@ -1,7 +1,6 @@
 import {IFilterContext} from "@/src/lib/generics/filterContext";
 
 export function filterContextToJson(context: IFilterContext): string {
-
     const object: any = {
         blacklist: context.blacklist.objectify(),
         whitelist: context.whitelist.objectify(),
