@@ -55,7 +55,7 @@ export default function GlobalJsonBrowser({filterContext, setFilterContext}: {
                     Object.keys(filterContext.globalSettings.flipper_modes).map((value: string, index) => {
 
                         return (
-                            <>
+                            <div key={`${value}${index}`}>
                                 <h3 className={"ml-6 mt-3"}>{value}</h3>
                                 <div className={"ml-6 pl-6 border-l-2 border-l-white"} key={index}>
 
@@ -76,7 +76,7 @@ export default function GlobalJsonBrowser({filterContext, setFilterContext}: {
                                         }}/>
                                     }
                                 </div>
-                            </>
+                            </div>
                         )
                     })
                 }
